@@ -130,11 +130,12 @@ class DriverListView(LoginRequiredMixin, generic.ListView):
         return context
 
     def get_queryset(self):
-        username = self.request.GET.get("username")
+        queryset = Driver.objects.all()
+        username = self.request.GET.get("username", "")
         form = DriverSearchForm(self.request.GET)
-        if form.is_valid():
-            return Driver.objects.filter(username__icontains=username)
-        return Driver.objects.all()
+        if form.is_valid() and queryset.count():
+            return queryset.filter(username__icontains=username)
+        return queryset
 
 
 class DriverDetailView(LoginRequiredMixin, generic.DetailView):
