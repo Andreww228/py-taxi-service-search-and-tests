@@ -23,7 +23,7 @@ class ModelsTest(TestCase):
             first_name="First",
             last_name="Last",
         )
-        self.assertEqual(str(driver), "(Aboba First Last)")
+        self.assertEqual(str(driver), "Aboba (First Last)")
 
     def test_car_str(self):
         manufacturer = Manufacturer.objects.create(
