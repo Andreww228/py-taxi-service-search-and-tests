@@ -5,7 +5,7 @@ from django.urls import reverse
 from taxi.models import Car, Manufacturer
 
 
-class ListViewTest(TestCase):       
+class ListViewTest(TestCase):
     def login_required(self, url):
         response = self.client.get(reverse(url))
         self.assertNotEqual(response.status_code, 200)
