@@ -5,25 +5,25 @@ from django.urls import reverse
 from taxi.models import Car, Manufacturer
 
 
-class CarListViewTestCase(TestCase):
-    def test_login_required(self):
-        url = reverse("taxi:driver-list")
-        response = self.client.get(url)
+class ListViewTest(TestCase):       
+    def login_required(self, url):
+        response = self.client.get(reverse(url))
         self.assertNotEqual(response.status_code, 200)
 
 
-class ManufacturerListViewTestCase(TestCase):
+class CarListViewTestCase(ListViewTest):
     def test_login_required(self):
-        url = reverse("taxi:manufacturer-list")
-        response = self.client.get(url)
-        self.assertNotEqual(response.status_code, 200)
+        self.login_required("taxi:driver-list")
 
 
-class DriverListViewTestCase(TestCase):
+class ManufacturerListViewTestCase(ListViewTest):
     def test_login_required(self):
-        url = reverse("taxi:driver-list")
-        response = self.client.get(url)
-        self.assertNotEqual(response.status_code, 200)
+        self.login_required("taxi:manufacturer-list")
+
+
+class DriverListViewTestCase(ListViewTest):
+    def test_login_required(self):
+        self.login_required("taxi:driver-list")
 
 
 class PrivateCarTest(TestCase):

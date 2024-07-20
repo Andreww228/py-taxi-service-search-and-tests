@@ -5,9 +5,6 @@ from taxi.models import Manufacturer, Driver, Car
 
 
 class ModelsTest(TestCase):
-    def setUp(self):
-        pass
-
     def test_manufacturer_str(self):
         manufacturer = Manufacturer.objects.create(
             name="Audi",
